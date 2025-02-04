@@ -1,5 +1,7 @@
 
+using api.repo.interfaces;
 using api.repo.Models;
+using api.repo.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace Linq_api_H2
@@ -28,6 +30,7 @@ namespace Linq_api_H2
             // Add services to the container.
 
             builder.Services.AddControllers();
+            builder.Services.AddScoped<Isamurai, SamuraiRepo>();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             string conStr = @"Server=THEDWARFS_GAMER\SQLEXPRESS;Database=Samurai002; Trusted_Connection=true; Trust Server Certificate=true; Integrated Security=true; Encrypt=True; ";
             builder.Services.AddDbContext<Database>(options => options.UseSqlServer(conStr));

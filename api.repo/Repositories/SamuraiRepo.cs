@@ -1,5 +1,6 @@
 ﻿using api.repo.interfaces;
 using api.repo.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,11 +24,12 @@ namespace api.repo.Repositories
             context = c;
 
         }
-        public List<Samurai> GetSamurais()
+        public async Task<List<Samurai>> GetSamurais()
         {
-            //context.Samurais.Add(new Samurai { Name = "Karl", Description = "Karl er en samurai" });
 
-            return context.Samurais.ToList();
+            context.Samurais.Add(new Samurai { Id = 0, Name = "Karl", Description = "Karl er en samurai" });
+            await context.SaveChangesAsync();
+            return await context.Samurais.ToListAsync();
             //Samurai samurai = new Samurai();
             //samurai.Name = "Karl";
             //string name = samurai.Name;
@@ -36,15 +38,30 @@ namespace api.repo.Repositories
             ////herinde skal vi have fat i vores database
             //throw new NotImplementedException();
         }
-        public Samurai GetSamurai(int id)
+        public async Task<Samurai> GetSamurai(int id)
         {
-            return context.Samurais.FirstOrDefault(x => x.Id == id);
+            return await context.Samurais.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public Samurai CreateSamurai(Samurai samurai)
+        public async Task<Samurai> CreateSamurai(Samurai samurai)
         {
-            context.Samurais.Add(samurai);
-            context.SaveChanges();
+            await context.Samurais.AddAsync(samurai);
+            await context.SaveChangesAsync();
+            return samurai;
+        }
+
+        public async Task<Samurai> UpdateSamurai(Samurai samurai)
+        {
+            context.Samurais.Update(samurai);
+            await context.SaveChangesAsync();
+            return samurai;
+        }
+
+        public async Task<Samurai> DeleteSamurai(int id)
+        {
+            Samurai samurai = await context.Samurais.FirstOrDefaultAsync(x => x.Id == id);
+            context.Samurais.Remove(samurai);
+            await context.SaveChangesAsync();
             return samurai;
         }
     }

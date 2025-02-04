@@ -10,11 +10,15 @@ namespace api.repo.interfaces
     public interface Isamurai
     {
         // returnerer all samurais
-        public List<Samurai> GetSamurais();
+        public Task<List<Samurai>> GetSamurais();
         // returnerer en samurai
-        public Samurai GetSamurai(int id);
+        public Task<Samurai> GetSamurai(int id);
         // opretter en samurai
-        public Samurai CreateSamurai(Samurai samurai);
+        public Task<Samurai> CreateSamurai(Samurai samurai);
+        // opdaterer en samurai
+        public Task<Samurai> UpdateSamurai(Samurai samurai);
+        // sletter en samurai
+        public Task<Samurai> DeleteSamurai(int id);
 
     }
 }
