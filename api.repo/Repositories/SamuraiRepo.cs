@@ -27,7 +27,7 @@ namespace api.repo.Repositories
         public async Task<List<Samurai>> GetSamurais()
         {
 
-            context.Samurais.Add(new Samurai { Id = 0, Name = "Karl", Description = "Karl er en samurai" });
+            //context.Samurais.Add(new Samurai { Id = 0, Name = "Karl", Description = "Karl er en samurai" });
             await context.SaveChangesAsync();
             return await context.Samurais.ToListAsync();
             //Samurai samurai = new Samurai();
@@ -63,6 +63,11 @@ namespace api.repo.Repositories
             context.Samurais.Remove(samurai);
             await context.SaveChangesAsync();
             return samurai;
+        }
+
+        public async Task<List<Samurai>> GetSamuraisAndHouse()
+        {
+            return await context.Samurais.Include((samuraiobj) => samuraiobj.House).ToListAsync();
         }
     }
 }

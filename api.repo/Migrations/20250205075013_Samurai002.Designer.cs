@@ -11,8 +11,8 @@ using api.repo.Models;
 namespace api.repo.Migrations
 {
     [DbContext(typeof(Database))]
-    [Migration("20250204080724_onsdagStart")]
-    partial class onsdagStart
+    [Migration("20250205075013_Samurai002")]
+    partial class Samurai002
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,6 +23,23 @@ namespace api.repo.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("api.repo.Models.House", b =>
+                {
+                    b.Property<int>("HouseId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HouseId"));
+
+                    b.Property<string>("adress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("HouseId");
+
+                    b.ToTable("Houses");
+                });
 
             modelBuilder.Entity("api.repo.Models.Samurai", b =>
                 {
@@ -36,13 +53,29 @@ namespace api.repo.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("HouseId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("HouseId");
+
                     b.ToTable("Samurais");
+                });
+
+            modelBuilder.Entity("api.repo.Models.Samurai", b =>
+                {
+                    b.HasOne("api.repo.Models.House", "House")
+                        .WithMany()
+                        .HasForeignKey("HouseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("House");
                 });
 #pragma warning restore 612, 618
         }

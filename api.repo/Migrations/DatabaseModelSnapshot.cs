@@ -21,6 +21,23 @@ namespace api.repo.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("api.repo.Models.House", b =>
+                {
+                    b.Property<int>("HouseId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HouseId"));
+
+                    b.Property<string>("adress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("HouseId");
+
+                    b.ToTable("Houses");
+                });
+
             modelBuilder.Entity("api.repo.Models.Samurai", b =>
                 {
                     b.Property<int>("Id")
@@ -33,13 +50,29 @@ namespace api.repo.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("HouseId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("HouseId");
+
                     b.ToTable("Samurais");
+                });
+
+            modelBuilder.Entity("api.repo.Models.Samurai", b =>
+                {
+                    b.HasOne("api.repo.Models.House", "House")
+                        .WithMany()
+                        .HasForeignKey("HouseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("House");
                 });
 #pragma warning restore 612, 618
         }

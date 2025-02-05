@@ -113,6 +113,14 @@ namespace Linq_api_H2.Controllers
             return samurai;
         }
 
+
+        // GET: api/Samurais
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Samurai>>> GetSamuraisAndHouse()
+        {
+            return await _context.GetSamuraisAndHouse();
+        }
+
         //private bool SamuraiExists(int id)
         //{
         //    return _context.Samurais.Any(e => e.Id == id);

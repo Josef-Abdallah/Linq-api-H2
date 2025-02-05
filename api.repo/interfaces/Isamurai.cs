@@ -20,5 +20,7 @@ namespace api.repo.interfaces
         // sletter en samurai
         public Task<Samurai> DeleteSamurai(int id);
 
+        public Task<List<Samurai>> GetSamuraisAndHouse();
+
     }
 }
