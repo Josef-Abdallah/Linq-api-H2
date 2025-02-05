@@ -94,9 +94,9 @@ namespace Linq_api_H2.Controllers
 
         // GET: api/Samurais/withhouse
         [HttpGet("withhouse")]
-        public async Task<ActionResult<IEnumerable<Samurai>>> GetSamuraisAndHouse()
+        public async Task<ActionResult<IEnumerable<House>>> GetHouses()
         {
-            return await _context.GetSamuraisAndHouse();
+            return await _context.GetHouses();
         }
     }
 }

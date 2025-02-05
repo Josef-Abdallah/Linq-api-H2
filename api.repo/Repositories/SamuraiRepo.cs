@@ -76,9 +76,9 @@ namespace api.repo.Repositories
             return samurai;
         }
 
-        public async Task<List<Samurai>> GetSamuraisAndHouse()
+        public async Task<List<House>> GetHouses()
         {
-            return await context.Samurais.Include((samuraiobj) => samuraiobj.House).ToListAsync();
+            return await context.Houses.ToListAsync();
         }
     }
 }

@@ -22,7 +22,7 @@ namespace api.repo.interfaces
         // sletter en samurai
         public Task<Samurai> DeleteSamurai(int id);
         // returnerer samurais og hus
-        public Task<List<Samurai>> GetSamuraisAndHouse();
+        public Task<List<House>> GetHouses();
 
     }
 }
