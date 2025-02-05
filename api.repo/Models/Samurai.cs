@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace api.repo.Models
@@ -17,7 +18,9 @@ namespace api.repo.Models
         public string Name { get; set; }
         public string Description { get; set; }
 
-        public int HouseId { get; set; } //foreign key
-        public House House { get; set; } //navigation property
+        public int ? HouseId { get; set; } //foreign key
+
+        [JsonIgnore]
+        public House ? House { get; set; } //navigation property
     }
 }

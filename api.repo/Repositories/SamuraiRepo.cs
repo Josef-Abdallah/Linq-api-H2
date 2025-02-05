@@ -50,6 +50,17 @@ namespace api.repo.Repositories
             return samurai;
         }
 
+        //gemme et hus
+        //create en nyt hus ved at house h = samurai.house
+        //gemme i db
+        //constant.house.find den vi får ud af det skal lægges ind i samurai 
+        public async Task<House> CreateSamuraiAndHouse(House house)
+        {
+            await context.Houses.AddAsync(house);
+            await context.SaveChangesAsync();
+            return house;
+        }
+
         public async Task<Samurai> UpdateSamurai(Samurai samurai)
         {
             context.Samurais.Update(samurai);

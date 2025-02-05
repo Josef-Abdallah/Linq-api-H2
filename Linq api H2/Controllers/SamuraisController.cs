@@ -42,45 +42,24 @@ namespace Linq_api_H2.Controllers
             return samurai;
         }
 
-        //// PUT: api/Samurais/5
-        //// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> PutSamurai(int id, Samurai samurai)
-        //{
-        //    if (id != samurai.Id)
-        //    {
-        //        return BadRequest();
-        //    }
-
-        //    _context.Entry(samurai).State = EntityState.Modified;
-
-        //    try
-        //    {
-        //        await _context.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!SamuraiExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return NoContent();
-        //}
-
         // POST: api/Samurais
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Samurai>> PostSamurai(Samurai samurai)
         {
-            return await _context.CreateSamurai(samurai);
+            var sam = new Samurai();
+            sam.Name = samurai.Name;
+            sam.Description = samurai.Description;
 
-            //return CreatedAtAction("GetSamurai", new { id = samurai.Id }, samurai);
+            return await _context.CreateSamurai(samurai);
+        }
+
+        // POST: api/Samurais
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost("PostHouse")]
+        public async Task<ActionResult<House>> PostSamuraiAnCreateSamuraiAndHouse(House house)
+        {
+            return await _context.CreateSamuraiAndHouse(house);
         }
 
         // UPDATE api/Samurais/5
@@ -113,17 +92,11 @@ namespace Linq_api_H2.Controllers
             return samurai;
         }
 
-
-        // GET: api/Samurais
-        [HttpGet]
+        // GET: api/Samurais/withhouse
+        [HttpGet("withhouse")]
         public async Task<ActionResult<IEnumerable<Samurai>>> GetSamuraisAndHouse()
         {
             return await _context.GetSamuraisAndHouse();
         }
-
-        //private bool SamuraiExists(int id)
-        //{
-        //    return _context.Samurais.Any(e => e.Id == id);
-        //}
     }
 }

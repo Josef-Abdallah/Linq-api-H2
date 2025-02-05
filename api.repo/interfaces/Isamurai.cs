@@ -15,11 +15,13 @@ namespace api.repo.interfaces
         public Task<Samurai> GetSamurai(int id);
         // opretter en samurai
         public Task<Samurai> CreateSamurai(Samurai samurai);
+        // opretter en samurai og et hus
+        public Task<House> CreateSamuraiAndHouse(House house);
         // opdaterer en samurai
         public Task<Samurai> UpdateSamurai(Samurai samurai);
         // sletter en samurai
         public Task<Samurai> DeleteSamurai(int id);
-
+        // returnerer samurais og hus
         public Task<List<Samurai>> GetSamuraisAndHouse();
 
     }
