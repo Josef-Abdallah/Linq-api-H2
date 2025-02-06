@@ -32,9 +32,11 @@ namespace Linq_api_H2
             builder.Services.AddControllers();
             builder.Services.AddScoped<Isamurai, SamuraiRepo>();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            string conStr = @"Server=THEDWARFS_GAMER\SQLEXPRESS;Database=Samurai002; Trusted_Connection=true; Trust Server Certificate=true; Integrated Security=true; Encrypt=True; ";
-            builder.Services.AddDbContext<Database>(options => options.UseSqlServer(conStr));
-
+            string conStr = @"Server=JOSEFS-BÆRBAR\SQLEXPRESS;Database=Samurai002; Trusted_Connection=true; Trust Server Certificate=true; Integrated Security=true; Encrypt=True; ";
+            //builder.Services.AddDbContext<Database>(options => options.UseSqlServer(conStr));
+            builder.Services.AddDbContext<Database>(options =>
+        options.UseSqlServer(conStr, b => b.MigrationsAssembly("Linq api H2"))
+    );
 
             //string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 

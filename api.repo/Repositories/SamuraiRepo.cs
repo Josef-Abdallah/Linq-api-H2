@@ -80,5 +80,13 @@ namespace api.repo.Repositories
         {
             return await context.Houses.ToListAsync();
         }
+
+        public async Task<House> DeleteHouse(int id)
+        {
+            House house = await context.Houses.FirstOrDefaultAsync(x => x.HouseId == id);
+            context.Houses.Remove(house);
+            await context.SaveChangesAsync();
+            return house;
+        }
     }
 }

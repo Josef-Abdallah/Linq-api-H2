@@ -9,10 +9,10 @@ using api.repo.Models;
 
 #nullable disable
 
-namespace api.repo.Migrations
+namespace Linq_api_H2.Migrations
 {
     [DbContext(typeof(Database))]
-    [Migration("20250205083414_Samurai002")]
+    [Migration("20250206063134_Samurai002")]
     partial class Samurai002
     {
         /// <inheritdoc />

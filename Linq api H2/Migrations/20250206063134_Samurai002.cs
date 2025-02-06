@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace api.repo.Migrations
+namespace Linq_api_H2.Migrations
 {
     /// <inheritdoc />
     public partial class Samurai002 : Migration

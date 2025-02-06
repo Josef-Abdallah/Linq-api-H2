@@ -24,5 +24,8 @@ namespace api.repo.interfaces
         // returnerer samurais og hus
         public Task<List<House>> GetHouses();
 
+        public Task<House> DeleteHouse(int id);
+
+
     }
 }

@@ -8,7 +8,7 @@ using api.repo.Models;
 
 #nullable disable
 
-namespace api.repo.Migrations
+namespace Linq_api_H2.Migrations
 {
     [DbContext(typeof(Database))]
     partial class DatabaseModelSnapshot : ModelSnapshot

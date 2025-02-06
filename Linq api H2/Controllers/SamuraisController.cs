@@ -54,13 +54,7 @@ namespace Linq_api_H2.Controllers
             return await _context.CreateSamurai(samurai);
         }
 
-        // POST: api/Samurais
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost("PostHouse")]
-        public async Task<ActionResult<House>> PostSamuraiAnCreateSamuraiAndHouse(House house)
-        {
-            return await _context.CreateSamuraiAndHouse(house);
-        }
+
 
         // UPDATE api/Samurais/5
         [HttpPut("{id}")]
@@ -90,13 +84,6 @@ namespace Linq_api_H2.Controllers
             }
 
             return samurai;
-        }
-
-        // GET: api/Samurais/withhouse
-        [HttpGet("withhouse")]
-        public async Task<ActionResult<IEnumerable<House>>> GetHouses()
-        {
-            return await _context.GetHouses();
         }
     }
 }
